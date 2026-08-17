@@ -1,0 +1,28 @@
+# Database credentials
+db.properties
+
+# Eclipse
+.metadata/
+.settings/
+.classpath
+.project
+
+# Java compiled files
+*.class
+bin/
+target/
+build/
+out/
+
+# Tomcat
+work/
+temp/
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IntelliJ IDEA
+.idea/
+*.iml
