@@ -2,6 +2,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class Student {
 private  int rollno;
@@ -69,5 +72,37 @@ public int add() {
 	return 0;
 	
 }
-
+public List<List<Object>> view() {
+	Connection connect=null;
+	PreparedStatement pstmt=null;
+	try {
+			connect=JDBCutils.getConnection();
+		String query="Select * from studentinfo";
+		pstmt=connect.prepareStatement(query);
+	ResultSet result=pstmt.executeQuery();
+		List<List<Object>>  dataList=new ArrayList<>();
+		while(result.next()) { 
+				int rollno=result.getInt("Rollno");
+				String name=result.getString("Name");
+				int age=result.getInt("Age");
+				String email=result.getString("Emailid");
+				String course=result.getString("Course");
+				dataList.add(Arrays.asList(rollno,name,age,email,course));
+		}
+		return dataList;
+	}
+	catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	finally {
+		try {
+			JDBCutils.closeConnection(pstmt, connect);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	return null;
+	}
 }
