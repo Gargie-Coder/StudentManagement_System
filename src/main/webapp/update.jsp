@@ -1,12 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java"
+    contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Add Student</title>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Update Student</title>
 
     <style>
 
@@ -26,6 +32,7 @@
         .navbar {
             background-color: #222;
             color: white;
+
             padding: 18px 40px;
 
             display: flex;
@@ -47,7 +54,7 @@
             color: #4da6ff;
         }
 
-        /* Form Container */
+        /* Container */
 
         .container {
             width: 90%;
@@ -55,6 +62,8 @@
 
             margin: 50px auto;
         }
+
+        /* Form Card */
 
         .form-card {
             background-color: white;
@@ -72,6 +81,7 @@
 
         .form-card p {
             color: #666;
+
             margin-bottom: 30px;
         }
 
@@ -133,17 +143,19 @@
             font-size: 15px;
         }
 
-        .submit-btn {
+        .update-btn {
             background-color: #222;
+
             color: white;
         }
 
-        .submit-btn:hover {
+        .update-btn:hover {
             background-color: #444;
         }
 
         .cancel-btn {
             background-color: #ddd;
+
             color: #222;
         }
 
@@ -152,18 +164,17 @@
         }
 
     </style>
-        <% 
+      <% 
         String message = (String) request.getAttribute("alertMsg");
         if (message != null && !message.trim().isEmpty()) { 
     %>
-        <script type="text/javascript">
-            alert("<%= message.replace("\"", "\\\"").replace("\n", "\\n") %>");
-        </script>
+      <script type="text/javascript">
+    alert("<%= message.replace("\"", "\\\"").replace("\r", "").replace("\n", "\\n") %>");
+</script>
     <% 
         } 
     %>
-     
-    
+
 </head>
 
 
@@ -188,18 +199,22 @@
     </nav>
 
 
-    <!-- Form -->
+    <!-- Update Form -->
 
     <main class="container">
 
         <div class="form-card">
 
-            <h1>Add Student</h1>
+            <h1>Update Student</h1>
 
-            <p>Enter the student's information below.</p>
+            <p>
+                Enter the student's roll number and
+                updated information below.
+            </p>
 
 
-            <form action="add" method="post">
+            <form action="updateStudent" method="post">
+
 
                 <!-- Roll Number -->
 
@@ -210,7 +225,7 @@
                     </label>
 
                     <input
-                        type="text"
+                        type="number"
                         id="rollno"
                         name="rollno"
                         placeholder="Enter roll number"
@@ -243,14 +258,14 @@
 
                 <div class="form-group">
 
-                    <label for="email">
+                    <label for="emailid">
                         Email ID
                     </label>
 
                     <input
                         type="email"
-                        id="email"
-                        name="email"
+                        id="emailid"
+                        name="emailid"
                         placeholder="Enter email address"
                         required
                     >
@@ -266,7 +281,10 @@
                         Course
                     </label>
 
-                    <select id="course" name="course" required>
+                    <select
+                        id="course"
+                        name="course"
+                        required>
 
                         <option value="">
                             -- Select Course --
@@ -324,14 +342,19 @@
 
                     <button
                         type="submit"
-                        class="btn submit-btn">
-                        Add Student
+                        class="btn update-btn">
+
+                        Update Student
+
                     </button>
 
+
                     <a
-                        href="index.jsp"
+                        href="index.html"
                         class="btn cancel-btn">
+
                         Cancel
+
                     </a>
 
                 </div>

@@ -131,4 +131,33 @@ public int delete(int rollno2) {
 	}
 	return 0;
 }
+public int update(int rollno,String name,String course,int age,String emailid) {
+	Connection connect=null;
+	PreparedStatement pstmt=null;
+	try {
+		connect=JDBCutils.getConnection();
+		String query="Update studentinfo SET Name=?, Age=?, Course=?, Emailid=? WHERE Rollno=?";
+		pstmt=connect.prepareStatement(query);
+		pstmt.setString(1,name);
+		pstmt.setInt(2,age);
+		pstmt.setString(3,course);
+		pstmt.setString(4, emailid);
+		pstmt.setInt(5,rollno);
+		int result=pstmt.executeUpdate();
+		return result;
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	finally {
+		try {
+			JDBCutils.closeConnection(pstmt, connect);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	return 0;
+}
 }

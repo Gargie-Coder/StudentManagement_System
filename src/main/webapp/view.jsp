@@ -147,7 +147,7 @@
         <h2>Student Management</h2>
 
         <div>
-            <a href="index.jsp">Dashboard</a>
+            <a href="index.html">Dashboard</a>
             <a href="View">Students</a>
             <a href="add-student.jsp">Add Student</a>
         </div>
