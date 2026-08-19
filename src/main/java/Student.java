@@ -105,4 +105,30 @@ public List<List<Object>> view() {
 	}
 	return null;
 	}
+public int delete(int rollno2) {
+	Connection connect=null;
+	PreparedStatement pstmt=null;
+	try {
+		connect=JDBCutils.getConnection();
+		String query = "DELETE FROM studentinfo WHERE Rollno = ?";
+
+        pstmt = connect.prepareStatement(query);
+
+        pstmt.setInt(1, rollno2);
+		int rowAffected=pstmt.executeUpdate();
+		return rowAffected;
+		
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	finally {
+		try {
+			JDBCutils.closeConnection(pstmt, connect);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	return 0;
+}
 }
