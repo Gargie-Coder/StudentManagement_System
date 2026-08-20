@@ -192,4 +192,52 @@ public List<Object> search(int rollno) {
 	
 	return null;
 }
+public List<Integer> details() {
+    Connection connect = null;
+    PreparedStatement pstmt = null;
+    ResultSet result = null;
+
+    List<Integer> list = new ArrayList<>();
+
+    try {
+        connect = JDBCutils.getConnection();
+
+        String query =
+            "SELECT " +
+            "(SELECT COUNT(*) FROM studentinfo) AS total, " +
+            "(SELECT COUNT(DISTINCT Course) FROM studentinfo) AS courses, " +
+            "(SELECT COUNT(*) FROM studentinfo " +
+            " WHERE created_at >= NOW() - INTERVAL 7 DAY) AS newStudents";
+
+        pstmt = connect.prepareStatement(query);
+        result = pstmt.executeQuery();
+
+        if (result.next()) {
+            list.add(result.getInt("total"));
+            list.add(result.getInt("courses"));
+            list.add(result.getInt("newStudents"));
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        try {
+            if (result != null) {
+                result.close();
+            }
+
+            if (pstmt != null) {
+                pstmt.close();
+            }
+
+            if (connect != null) {
+                connect.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    return list;
+}
 }

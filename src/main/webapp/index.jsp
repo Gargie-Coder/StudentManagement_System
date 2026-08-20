@@ -1,3 +1,6 @@
+<%@ page language="java"
+    contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -140,7 +143,7 @@
         <h2>Student Management</h2>
 
         <div>
-            <a href="index.html">Dashboard</a>
+            <a href="Dashboard">Dashboard</a>
             <a href="View">Students</a>
             <a href="add-student.jsp">Add Student</a>
         </div>
@@ -157,22 +160,28 @@
 
 
         <!-- Statistics -->
-        <section class="cards">
+       <section>
+    <div class="cards">
 
-            <div class="card">
-                <h3>Total Students</h3>
-                <div class="number">120</div>
-            </div>
+        <div class="card">
+            <h3>Total Students</h3>
+            <div class="number">${studentdetails[0]}</div>
+        </div>
 
-            <div class="card">
-                <h3>Total Courses</h3>
-                <div class="number">8</div>
-            </div>
+        <div class="card">
+            <h3>Total Courses</h3>
+            <div class="number">${studentdetails[1]}</div>
+        </div>
 
-            <div class="card">
-                <h3>New Students</h3>
-                <div class="number">15</div>
-            </div>
+        <div class="card">
+            <h3>New Students</h3>
+            <div class="number">${studentdetails[2]}</div>
+        </div>
+
+    </div>
+</section>
+
+</div>
 
         </section>
 

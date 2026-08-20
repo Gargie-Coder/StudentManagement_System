@@ -168,7 +168,7 @@
 
         <div>
 
-            <a href="index.html">Dashboard</a>
+            <a href="Dashboard">Dashboard</a>
 
             <a href="View">Students</a>
 
@@ -290,7 +290,7 @@
                 Search Again
             </a>
 
-            <a href="index.html" class="btn">
+            <a href="Dashboard" class="btn">
                 Dashboard
             </a>
 

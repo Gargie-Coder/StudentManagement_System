@@ -188,13 +188,13 @@
 
         <div>
 
-            <a href="index.jsp">Dashboard</a>
+            <a href="Dashboard">Dashboard</a>
 
             <a href="View">Students</a>
 
             <a href="add-student.jsp">Add Student</a>
 
-            <a href="search.jsp">Search</a>
+            <a href="SearchStudent.jsp">Search</a>
 
         </div>
 

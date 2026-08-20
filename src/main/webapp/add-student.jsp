@@ -177,7 +177,7 @@
 
         <div>
 
-            <a href="index.html">Dashboard</a>
+            <a href="Dashboard">Dashboard</a>
 
             <a href="View">Students</a>
 
@@ -329,7 +329,7 @@
                     </button>
 
                     <a
-                        href="index.jsp"
+                        href="Dashboard"
                         class="btn cancel-btn">
                         Cancel
                     </a>
