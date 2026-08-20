@@ -160,4 +160,36 @@ public int update(int rollno,String name,String course,int age,String emailid) {
 	
 	return 0;
 }
+public List<Object> search(int rollno) {
+	Connection connect=null;
+	PreparedStatement pstmt=null;
+	List<Object> list=new ArrayList<>();
+	// TODO Auto-generated method stub
+	try {
+		connect=JDBCutils.getConnection();
+		String query="Select * from studentinfo where Rollno=?";
+		pstmt=connect.prepareStatement(query);
+		pstmt.setInt(1,rollno);
+		ResultSet result=pstmt.executeQuery();
+		while(result.next()) {
+			list.add(rollno);
+			list.add(result.getString("Name"));
+			list.add(result.getString("Course"));
+			list.add(result.getInt("Age"));
+			list.add(result.getString("Emailid"));
+		}	
+		return list;
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	finally {
+		try {
+			JDBCutils.closeConnection(pstmt, connect);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	return null;
+}
 }

@@ -10,9 +10,11 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>All Students</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Student Search Result</title>
 
     <style>
 
@@ -26,8 +28,6 @@
         body {
             background-color: #f4f6f8;
         }
-
-        /* Navbar */
 
         .navbar {
             background-color: #222;
@@ -54,16 +54,12 @@
             color: #4da6ff;
         }
 
-        /* Main Container */
-
         .container {
             width: 90%;
-            max-width: 1100px;
+            max-width: 800px;
 
-            margin: 40px auto;
+            margin: 50px auto;
         }
-
-        /* Heading */
 
         .heading {
             margin-bottom: 25px;
@@ -77,47 +73,39 @@
             color: #666;
         }
 
-        /* Table Card */
-
-        .table-card {
+        .student-card {
             background-color: white;
 
-            padding: 25px;
+            padding: 30px;
 
             border-radius: 8px;
 
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-
-            overflow-x: auto;
         }
 
-        /* Table */
+        .student-row {
+            display: flex;
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
+            justify-content: space-between;
 
-        th {
-            background-color: #222;
-            color: white;
-
-            padding: 14px;
-
-            text-align: left;
-        }
-
-        td {
-            padding: 14px;
+            padding: 15px 5px;
 
             border-bottom: 1px solid #ddd;
         }
 
-        tr:hover {
-            background-color: #f5f5f5;
+        .student-row:last-child {
+            border-bottom: none;
         }
 
-        /* Empty Message */
+        .label {
+            font-weight: bold;
+
+            color: #555;
+        }
+
+        .value {
+            color: #222;
+        }
 
         .empty-message {
             text-align: center;
@@ -126,8 +114,6 @@
 
             color: #666;
         }
-
-        /* Actions */
 
         .actions {
             margin-top: 25px;
@@ -151,9 +137,7 @@
             background-color: #444;
         }
 
-        /* Responsive */
-
-        @media (max-width: 700px) {
+        @media (max-width: 600px) {
 
             .navbar {
                 padding: 15px 20px;
@@ -163,14 +147,12 @@
                 margin-left: 10px;
             }
 
-            .container {
-                width: 95%;
+            .student-row {
+                flex-direction: column;
+
+                gap: 5px;
             }
 
-            th,
-            td {
-                padding: 10px;
-            }
         }
 
     </style>
@@ -180,94 +162,105 @@
 
 <body>
 
-    <!-- Navigation -->
-
     <nav class="navbar">
 
         <h2>Student Management</h2>
 
         <div>
 
-            <a href="index.jsp">Dashboard</a>
+            <a href="index.html">Dashboard</a>
 
             <a href="View">Students</a>
 
             <a href="add-student.jsp">Add Student</a>
-
-            <a href="search.jsp">Search</a>
 
         </div>
 
     </nav>
 
 
-    <!-- Main Content -->
-
     <main class="container">
 
         <div class="heading">
 
-            <h1>All Students</h1>
+            <h1>Search Result</h1>
 
             <p>
-                View all students registered in the system.
+                Student information
             </p>
 
         </div>
 
 
-        <!-- Student Table -->
-
-        <div class="table-card">
+        <div class="student-card">
 
             <c:choose>
 
                 <c:when test="${not empty studentdata}">
 
-                    <table>
+                    <div class="student-row">
 
-                        <thead>
+                        <span class="label">
+                            Roll Number
+                        </span>
 
-                            <tr>
+                        <span class="value">
+                            ${studentdata[0]}
+                        </span>
 
-                                <th>Roll No</th>
-
-                                <th>Name</th>
-
-                                <th>Age</th>
-
-                                <th>Email</th>
-
-                                <th>Course</th>
-
-                            </tr>
-
-                        </thead>
+                    </div>
 
 
-                        <tbody>
+                    <div class="student-row">
 
-                            <c:forEach var="item" items="${studentdata}">
+                        <span class="label">
+                            Name
+                        </span>
 
-                                <tr>
+                        <span class="value">
+                            ${studentdata[1]}
+                        </span>
 
-                                    <td>${item[0]}</td>
+                    </div>
 
-                                    <td>${item[1]}</td>
 
-                                    <td>${item[2]}</td>
+                    <div class="student-row">
 
-                                    <td>${item[3]}</td>
+                        <span class="label">
+                            Course
+                        </span>
 
-                                    <td>${item[4]}</td>
+                        <span class="value">
+                            ${studentdata[2]}
+                        </span>
 
-                                </tr>
+                    </div>
 
-                            </c:forEach>
 
-                        </tbody>
+                    <div class="student-row">
 
-                    </table>
+                        <span class="label">
+                            Age
+                        </span>
+
+                        <span class="value">
+                            ${studentdata[3]}
+                        </span>
+
+                    </div>
+
+
+                    <div class="student-row">
+
+                        <span class="label">
+                            Email
+                        </span>
+
+                        <span class="value">
+                            ${studentdata[4]}
+                        </span>
+
+                    </div>
 
                 </c:when>
 
@@ -276,10 +269,10 @@
 
                     <div class="empty-message">
 
-                        <h3>No Students Found</h3>
+                        <h3>Student Not Found</h3>
 
                         <p>
-                            There are currently no students in the system.
+                            No student exists with this roll number.
                         </p>
 
                     </div>
@@ -291,12 +284,14 @@
         </div>
 
 
-        <!-- Bottom Actions -->
-
         <div class="actions">
 
-            <a href="add-student.jsp" class="btn">
-                + Add Student
+            <a href="SearchStudent.jsp" class="btn">
+                Search Again
+            </a>
+
+            <a href="index.html" class="btn">
+                Dashboard
             </a>
 
         </div>
